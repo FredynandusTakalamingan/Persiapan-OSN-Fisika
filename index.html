@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latihan Persiapan OSN Fisika | SMA Negeri 2 Bitung</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --secondary: #f59e0b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --success: #16a34a;
+      --danger: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #0ea5e9);
+      color: white;
+      padding: 48px 18px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -42px;
+      height: 90px;
+      background: var(--bg);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .hero {
+      max-width: 950px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      margin: 8px 0 12px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      color: var(--primary-dark);
+      margin-top: 0;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: auto;
+      font-size: 18px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: bold;
+      white-space: nowrap;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #ecfeff;
+      border: 1px solid #cffafe;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 28px auto;
+      padding: 0 16px;
+    }
+
+    .intro, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      margin-bottom: 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .problem {
+      border-left: 6px solid var(--primary);
+    }
+
+    .answer {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #14532d;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .formula {
+      background: #0f172a;
+      color: #e0f2fe;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-family: "Courier New", monospace;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+
+    details {
+      margin-top: 12px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      border-radius: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--primary-dark);
+    }
+
+    .simulator {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .track {
+      position: relative;
+      height: 72px;
+      background: linear-gradient(#e2e8f0 48%, #94a3b8 50%, #e2e8f0 52%);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 14px 0;
+      border: 1px solid #cbd5e1;
+    }
+
+    .object {
+      width: 44px;
+      height: 28px;
+      border-radius: 10px;
+      position: absolute;
+      top: 22px;
+      left: 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+      transition: left 0.2s linear;
+    }
+
+    .obj-a { background: #2563eb; }
+    .obj-b { background: #dc2626; top: 38px; }
+    .obj-d { background: #7c3aed; top: 6px; }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+
+    input[type="range"] {
+      accent-color: var(--primary);
+      max-width: 220px;
+    }
+
+    .mini-output {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    canvas {
+      width: 100%;
+      height: 260px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-top: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 26px 16px;
+      margin-top: 40px;
+    }
+
+    .credit {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    @media print {
+      nav, button, .simulator { display: none; }
+      body { background: white; }
+      .card, .intro { box-shadow: none; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <section class="hero">
+      <span class="badge">Latihan Persiapan OSN Fisika</span>
+      <h1>GLB dan GLBB untuk Siswa SMA Negeri 2 Bitung</h1>
+      <p>Web pembelajaran interaktif berisi soal, solusi, dan simulasi sederhana agar konsep gerak lurus lebih mudah dipahami.</p>
+    </section>
+  </header>
+
+  <nav>
+    <a href="#penjelasan">Penjelasan Web</a>
+    <a href="#soal1">Soal 1</a>
+    <a href="#soal2">Soal 2</a>
+    <a href="#soal3">Soal 3</a>
+    <a href="#soal4">Soal 4</a>
+    <a href="#soal5">Soal 5</a>
+    <a href="#soal6">Soal 6</a>
+    <a href="#soal7">Soal 7</a>
+    <a href="#soal8">Soal 8</a>
+    <a href="#soal9">Soal 9</a>
+    <a href="#soal10">Soal 10</a>
+  </nav>
+
+  <main>
+    <section id="penjelasan" class="intro">
+      <h2>Open Web: Penjelasan Web Ini</h2>
+      <p>Web ini dibuat sebagai bahan latihan persiapan OSN Fisika untuk siswa SMA Negeri 2 Bitung. Materi yang dibahas adalah Gerak Lurus Beraturan atau GLB dan Gerak Lurus Berubah Beraturan atau GLBB.</p>
+      <p>Gunakan tombol <b>Lihat Solusi</b> untuk membuka pembahasan. Pada beberapa soal tersedia simulasi sederhana. Geser slider waktu atau tekan tombol animasi untuk melihat perubahan posisi benda.</p>
+      <p class="credit">Desain oleh Fredynandus Takalamingan, S.Si - Guru Fisika SMA Negeri 2 Bitung.</p>
+    </section>
+
+    <section class="grid">
+      <article id="soal1" class="card problem">
+        <h2>1. Dua Benda A dan B</h2>
+        <p>A bergerak lebih dahulu dengan kecepatan 8 m/s. Setelah 4 s, B menyusul dari titik dan arah yang sama dengan kecepatan 10 m/s. Tentukan jarak yang ditempuh B saat menyusul A.</p>
+        <details open>
+          <summary>Lihat Solusi</summary>
+          <p>A sudah unggul sejauh:</p>
+          <div class="formula">s = v × t = 8 × 4 = 32 m</div>
+          <p>Kecepatan relatif B terhadap A:</p>
+          <div class="formula">v_rel = 10 - 8 = 2 m/s</div>
+          <p>Waktu B menyusul A:</p>
+          <div class="formula">t = 32 / 2 = 16 s</div>
+          <p>Jarak yang ditempuh B:</p>
+          <div class="formula">s_B = 10 × 16 = 160 m</div>
+          <div class="answer">Jawaban: 160 m</div>
+        </details>
+        <div class="simulator">
+          <h3>Simulasi Kejar-kejaran</h3>
+          <div class="controls">
+            <label>Waktu setelah B berangkat: <input id="tCatch" type="range" min="0" max="16" value="0" step="1" oninput="simCatch()"></label>
+            <button onclick="animateCatch()">Animasi</button>
+          </div>
+          <div class="track">
+            <div id="carA" class="object obj-a">A</div>
+            <div id="carB" class="object obj-b">B</div>
+          </div>
+          <div id="outCatch" class="mini-output"></div>
+        </div>
+      </article>
+
+      <article id="soal2" class="card problem">
+        <h2>2. Mobil Dipercepat lalu Diperlambat</h2>
+        <p>Mobil mula-mula diam, bergerak dengan percepatan tetap 2 m/s² selama 10 s. Setelah mesin dimatikan, mobil berhenti 10 s kemudian. Tentukan jarak dari mesin dimatikan sampai berhenti.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">v = a t = 2 × 10 = 20 m/s</div>
+          <div class="formula">s = ((v0 + vt) / 2) × t</div>
+          <div class="formula">s = ((20 + 0) / 2) × 10 = 100 m</div>
+          <div class="answer">Jawaban: 100 m</div>
+        </details>
+        <div class="simulator">
+          <h3>Simulasi Perlambatan</h3>
+          <div class="controls">
+            <label>Waktu perlambatan: <input id="tBrake" type="range" min="0" max="10" value="0" step="1" oninput="simBrake()"></label>
+          </div>
+          <div class="track"><div id="carBrake" class="object obj-a">M</div></div>
+          <div id="outBrake" class="mini-output"></div>
+        </div>
+      </article>
+
+      <article id="soal3" class="card problem">
+        <h2>3. Perpindahan Perjalanan Bintang</h2>
+        <p>Bintang berjalan 600 m ke utara, 400 m ke barat, 200 m ke selatan, lalu 700 m ke timur. Tentukan besar perpindahannya.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">Komponen vertikal = 600 - 200 = 400 m utara</div>
+          <div class="formula">Komponen horizontal = 700 - 400 = 300 m timur</div>
+          <div class="formula">R = √(300² + 400²) = 500 m</div>
+          <div class="answer">Jawaban: 500 m</div>
+        </details>
+        <div class="simulator">
+          <h3>Simulasi Vektor Perpindahan</h3>
+          <button onclick="drawVector()">Gambar Rute</button>
+          <canvas id="vectorCanvas" width="700" height="260"></canvas>
+        </div>
+      </article>
+
+      <article id="soal4" class="card problem">
+        <h2>4. Percepatan Motor</h2>
+        <p>Motor mengalami perubahan kecepatan 72 km/jam tiap detik. Tentukan percepatannya.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">72 km/jam = 72 × 1000 / 3600 = 20 m/s</div>
+          <div class="formula">a = 20 m/s tiap detik = 20 m/s²</div>
+          <div class="answer">Jawaban: 20 m/s²</div>
+        </details>
+      </article>
+
+      <article id="soal5" class="card problem">
+        <h2>5. Perlambatan Kereta</h2>
+        <p>Kereta bergerak dengan kecepatan 36 km/jam lalu direm sampai berhenti dalam 10 s. Tentukan perlambatan kereta.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">36 km/jam = 10 m/s</div>
+          <div class="formula">a = (vt - v0) / t = (0 - 10) / 10 = -1 m/s²</div>
+          <div class="answer">Besarnya perlambatan: 1 m/s²</div>
+        </details>
+      </article>
+
+      <article id="soal6" class="card problem">
+        <h2>6. Partikel Diperlambat</h2>
+        <p>Kecepatan partikel berubah dari 30 m/s menjadi 15 m/s dengan perpindahan 75 m. Jika perlambatan konstan, berapa jarak lagi sampai berhenti?</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">v² = u² + 2as</div>
+          <div class="formula">15² = 30² + 2a(75)</div>
+          <div class="formula">225 = 900 + 150a</div>
+          <div class="formula">a = -4,5 m/s²</div>
+          <div class="formula">0 = 15² + 2(-4,5)s</div>
+          <div class="formula">s = 25 m</div>
+          <div class="answer">Jawaban: 25 m</div>
+        </details>
+      </article>
+
+      <article id="soal7" class="card problem">
+        <h2>7. Lokomotif</h2>
+        <p>Lokomotif mula-mula diam, bergerak dengan percepatan 2 m/s². Tentukan waktu yang dibutuhkan untuk menempuh jarak 900 m.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">s = 1/2 a t²</div>
+          <div class="formula">900 = 1/2(2)t²</div>
+          <div class="formula">900 = t²</div>
+          <div class="formula">t = 30 s</div>
+          <div class="answer">Jawaban: 30 s</div>
+        </details>
+      </article>
+
+      <article id="soal8" class="card problem">
+        <h2>8. Grafik v-t</h2>
+        <p>Dari grafik v-t diketahui v0 = 8 m/s, vt = 24 m/s, dan t = 8 s. Tentukan jarak yang ditempuh.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <div class="formula">s = 1/2(v0 + vt)t</div>
+          <div class="formula">s = 1/2(8 + 24)(8) = 128 m</div>
+          <div class="answer">Jawaban: 128 m</div>
+        </details>
+        <div class="simulator">
+          <h3>Simulasi Luas Grafik v-t</h3>
+          <button onclick="drawVT()">Gambar Grafik</button>
+          <canvas id="vtCanvas" width="700" height="260"></canvas>
+        </div>
+      </article>
+
+      <article id="soal9" class="card problem">
+        <h2>9. Waktu Minimum Partikel</h2>
+        <p>Partikel menempuh jarak L dari diam dan berakhir diam. Partikel dipercepat konstan a, lalu diperlambat dengan besar a sampai berhenti tepat di L.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <p>Waktu minimum terjadi saat fase percepatan dan perlambatan simetris.</p>
+          <div class="formula">t1 = t2</div>
+          <div class="formula">v = at</div>
+          <div class="formula">s1 = 1/2 at² dan s2 = 1/2 at²</div>
+          <div class="formula">L = at²</div>
+          <div class="formula">t = √(L/a)</div>
+          <div class="formula">T_min = 2√(L/a)</div>
+          <div class="answer">Jawaban: T_min = 2√(L/a)</div>
+        </details>
+      </article>
+
+      <article id="soal10" class="card problem">
+        <h2>10. Kereta A, Kereta B, dan Drone</h2>
+        <p>A melewati stasiun pada t = 0 dengan kecepatan 15 m/s. B berada 300 m di belakang A dan bergerak dengan kecepatan 25 m/s. Drone dari stasiun bergerak ke arah kereta dengan kecepatan 20 m/s.</p>
+        <details>
+          <summary>Lihat Solusi</summary>
+          <p>Waktu B menyusul A:</p>
+          <div class="formula">t = 300 / (25 - 15) = 30 s</div>
+          <p>Posisi saat menyusul:</p>
+          <div class="formula">x = 15 × 30 = 450 m</div>
+          <p>Drone dengan A:</p>
+          <div class="formula">xD = 20t dan xA = 15t → t = 0</div>
+          <p>Drone dengan B:</p>
+          <div class="formula">20t = -300 + 25t → t = 60 s</div>
+          <div class="answer">B menyusul A pada 30 s di posisi 450 m. Drone lebih dulu bertemu A.</div>
+        </details>
+        <div class="simulator">
+          <h3>Simulasi Kereta dan Drone</h3>
+          <div class="controls">
+            <label>Waktu: <input id="tTrain" type="range" min="0" max="60" value="0" step="1" oninput="simTrain()"></label>
+          </div>
+          <div class="track">
+            <div id="trainA" class="object obj-a">A</div>
+            <div id="trainB" class="object obj-b">B</div>
+            <div id="drone" class="object obj-d">D</div>
+          </div>
+          <div id="outTrain" class="mini-output"></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Latihan Persiapan OSN Fisika - SMA Negeri 2 Bitung</p>
+    <p class="credit">Desain oleh Fredynandus Takalamingan, S.Si - Guru Fisika SMA Negeri 2 Bitung</p>
+  </footer>
+
+  <script>
+    function clampPercent(value, min, max) {
+      return Math.max(0, Math.min(95, ((value - min) / (max - min)) * 95));
+    }
+
+    function simCatch() {
+      const t = Number(document.getElementById('tCatch').value);
+      const xA = 32 + 8 * t;
+      const xB = 10 * t;
+      document.getElementById('carA').style.left = clampPercent(xA, 0, 160) + '%';
+      document.getElementById('carB').style.left = clampPercent(xB, 0, 160) + '%';
+      document.getElementById('outCatch').innerHTML = `t = ${t} s | posisi A = ${xA} m | posisi B = ${xB} m ${t === 16 ? '→ B menyusul A' : ''}`;
+    }
+
+    function animateCatch() {
+      let t = 0;
+      const slider = document.getElementById('tCatch');
+      const timer = setInterval(() => {
+        slider.value = t;
+        simCatch();
+        t++;
+        if (t > 16) clearInterval(timer);
+      }, 350);
+    }
+
+    function simBrake() {
+      const t = Number(document.getElementById('tBrake').value);
+      const v0 = 20;
+      const a = -2;
+      const s = v0 * t + 0.5 * a * t * t;
+      const v = v0 + a * t;
+      document.getElementById('carBrake').style.left = clampPercent(s, 0, 100) + '%';
+      document.getElementById('outBrake').innerHTML = `t = ${t} s | jarak = ${s.toFixed(1)} m | kecepatan = ${Math.max(0, v).toFixed(1)} m/s`;
+    }
+
+    function drawVector() {
+      const c = document.getElementById('vectorCanvas');
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.lineWidth = 4;
+      ctx.font = '15px Arial';
+      const scale = 0.18;
+      let x = 160;
+      let y = 205;
+      ctx.fillText('A', x - 18, y + 5);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      y -= 600 * scale;
+      ctx.lineTo(x, y);
+      x -= 400 * scale;
+      ctx.lineTo(x, y);
+      y += 200 * scale;
+      ctx.lineTo(x, y);
+      x += 700 * scale;
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.fillText('E', x + 8, y + 5);
+      ctx.strokeStyle = '#dc2626';
+      ctx.setLineDash([8, 6]);
+      ctx.beginPath();
+      ctx.moveTo(160, 205);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.strokeStyle = '#000';
+      ctx.fillText('Perpindahan = 500 m', 390, 220);
+    }
+
+    function drawVT() {
+      const c = document.getElementById('vtCanvas');
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.font = '15px Arial';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(70, 220);
+      ctx.lineTo(70, 35);
+      ctx.lineTo(60, 50);
+      ctx.moveTo(70, 35);
+      ctx.lineTo(80, 50);
+      ctx.moveTo(70, 220);
+      ctx.lineTo(630, 220);
+      ctx.lineTo(615, 210);
+      ctx.moveTo(630, 220);
+      ctx.lineTo(615, 230);
+      ctx.stroke();
+      ctx.fillText('v (m/s)', 38, 25);
+      ctx.fillText('t (s)', 635, 225);
+
+      const x0 = 70, y0 = 180;
+      const x1 = 530, y1 = 70;
+      ctx.fillStyle = 'rgba(14, 165, 233, 0.18)';
+      ctx.beginPath();
+      ctx.moveTo(70, 220);
+      ctx.lineTo(x0, y0);
+      ctx.lineTo(x1, y1);
+      ctx.lineTo(x1, 220);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#0f766e';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(x0, y0);
+      ctx.lineTo(x1, y1);
+      ctx.stroke();
+      ctx.fillStyle = '#0f172a';
+      ctx.fillText('8', 45, y0 + 5);
+      ctx.fillText('24', 38, y1 + 5);
+      ctx.fillText('8 s', x1 - 12, 242);
+      ctx.fillText('Luas trapesium = jarak = 128 m', 290, 45);
+    }
+
+    function simTrain() {
+      const t = Number(document.getElementById('tTrain').value);
+      const xA = 15 * t;
+      const xB = -300 + 25 * t;
+      const xD = 20 * t;
+      document.getElementById('trainA').style.left = clampPercent(xA, -300, 1200) + '%';
+      document.getElementById('trainB').style.left = clampPercent(xB, -300, 1200) + '%';
+      document.getElementById('drone').style.left = clampPercent(xD, -300, 1200) + '%';
+      let info = `t = ${t} s | A = ${xA} m | B = ${xB} m | Drone = ${xD} m`;
+      if (t === 0) info += ' → Drone bertemu A';
+      if (t === 30) info += ' → B menyusul A';
+      if (t === 60) info += ' → Drone bertemu B';
+      document.getElementById('outTrain').innerHTML = info;
+    }
+
+    simCatch();
+    simBrake();
+    simTrain();
+    drawVector();
+    drawVT();
+  </script>
+</body>
+</html>
