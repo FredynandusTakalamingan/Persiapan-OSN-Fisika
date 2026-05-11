@@ -78,7 +78,7 @@
 
     /* --- Main Content --- */
     #main-content {
-      display: none; /* Hidden by default */
+      display: none; 
       opacity: 0;
       transition: opacity 1s ease-in;
     }
@@ -147,7 +147,7 @@
     <div style="max-width: 800px;">
       <span style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 14px; opacity: 0.8;">Modul Fisika Interaktif</span>
       <h1 style="font-size: clamp(40px, 8vw, 70px); margin: 10px 0;">SMA Negeri 2 Bitung</h1>
-      <p style="font-size: 18px; opacity: 0.9;">Persiapan OSN: Materi Gerak Lurus, GLB, GLBB, dan Gerak Vertikal.</p>
+      <p style="font-size: 18px; opacity: 0.9;">Persiapan OSN: Materi Gerak Lurus, GLB, GLBB, dan Gerak Parabola.</p>
       <button class="start-btn" onclick="enterSite()">MULAI BELAJAR</button>
     </div>
   </section>
@@ -162,8 +162,8 @@
 
     <nav>
       <a href="#materi">📚 Konsep</a>
-      <a href="#soal1">Soal 1-5</a>
-      <a href="#soal6">Soal 6-10</a>
+      <a href="#soal-proyektil">Soal OSK</a>
+      <a href="#soal-lain">Latihan Umum</a>
     </nav>
 
     <main>
@@ -171,24 +171,59 @@
         <h2 style="color: var(--primary);">Pusat Materi Ringkas</h2>
         <div class="materi-grid">
           <div class="materi-item">
-            <h4>Jarak & Perpindahan</h4>
-            <p style="font-size: 14px;">Jarak adalah total panjang lintasan. Perpindahan adalah perubahan posisi (vektor).</p>
-            <div class="formula-box">$$\Delta x = x_{akhir} - x_{awal}$$</div>
+            <h4>Parabola Bidang Miring</h4>
+            <p style="font-size: 14px;">Untuk memudahkan, sumbu $x$ diletakkan sejajar bidang miring dan sumbu $y$ tegak lurus bidang.</p>
+            <div class="formula-box">$$g_y = g \cos \theta$$ $$g_x = g \sin \theta$$</div>
           </div>
           <div class="materi-item">
             <h4>GLB & GLBB</h4>
-            <p style="font-size: 14px;">GLB memiliki kecepatan konstan ($a=0$). GLBB memiliki percepatan konstan.</p>
-            <div class="formula-box">$s = v \cdot t$ (GLB)<br>$v_t = v_0 + at$ (GLBB)</div>
-          </div>
-          <div class="materi-item">
-            <h4>Gerak Vertikal</h4>
-            <p style="font-size: 14px;">Gerak Jatuh Bebas ($v_0=0$) dan Gerak Vertikal Atas ($g$ negatif).</p>
-            <div class="formula-box">$h = \frac{1}{2}gt^2$<br>$v_t = \sqrt{2gh}$</div>
+            <p style="font-size: 14px;">Gerak pada sumbu $y$ selalu GLBB (jatuh kembali ke bidang), sedangkan sumbu $x$ dipengaruhi komponen gravitasi.</p>
           </div>
         </div>
       </section>
 
       <div class="grid">
+        <article id="soal-proyektil" class="card" style="grid-column: 1 / -1; border: 2px solid var(--primary);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: var(--primary);">00. Analisis Proyektil Bidang Miring (Soal Gambar)</h3>
+            <span class="ans-tag" style="background: #ef4444;">Hot Topic</span>
+          </div>
+          <p>
+            Seorang sniper menembakkan sebuah peluru dengan sudut $30^\circ$ dan kecepatan awal $v_0 = 10 \text{ m/s}$ pada sebuah bidang miring yang memiliki kemiringan $30^\circ$ terhadap sumbu datar. Jika percepatan gravitasi $g = 10 \text{ m/s}^2$, maka jarak jangkauan maksimum yang dapat dicapai peluru tersebut adalah....
+          </p>
+
+          <details>
+            <summary>Lihat Pembahasan Langkah-demi-Langkah</summary>
+            <div style="padding: 15px;">
+                            <p><b>1. Analisis Koordinat:</b><br>
+              Kita gunakan koordinat miring dimana sumbu $x$ sejajar bidang miring.
+              <ul>
+                <li>Kecepatan awal sumbu $y$: $v_{0y} = v_0 \sin 30^\circ = 10 \times 0,5 = 5 \text{ m/s}$</li>
+                <li>Percepatan sumbu $y$: $a_y = -g \cos 30^\circ = -10 \times \frac{1}{2}\sqrt{3} = -5\sqrt{3} \text{ m/s}^2$</li>
+              </ul>
+              </p>
+
+              <p><b>2. Mencari Waktu Terbang ($t$):</b><br>
+              Peluru mendarat saat posisi $y = 0$ (kembali ke bidang).
+              <div class="formula-box">
+                $$y = v_{0y}t + \frac{1}{2}a_yt^2$$
+                $$0 = 5t - \frac{1}{2}(5\sqrt{3})t^2 \implies t = \frac{2}{\sqrt{3}} \text{ s}$$
+              </div>
+              </p>
+
+              <p><b>3. Mencari Jangkauan Sumbu $x$ ($R$):</b><br>
+              Karena peluru ditembakkan pada bidang miring ke atas, gravitasi menghambat di sumbu $x$ ($a_x = -g \sin 30^\circ$).
+              <div class="formula-box">
+                $$R = (v_0 \cos 30^\circ)t + \frac{1}{2}a_xt^2$$
+                $$R = (10 \times \frac{1}{2}\sqrt{3}) \times \frac{2}{\sqrt{3}} - \frac{1}{2}(10 \times \frac{1}{2}) \times (\frac{2}{\sqrt{3}})^2$$
+                $$R = 10 - \frac{1}{2}(5) \times \frac{4}{3} = 10 - \frac{10}{3} = \frac{20}{3} \text{ m}$$
+              </div>
+              </p>
+              <span class="ans-tag">Jawaban: A. \(\frac{20}{3}\) m</span>
+            </div>
+          </details>
+        </article>
+
         <article id="soal1" class="card">
           <h3>01. Pengejaran Dua Benda</h3>
           <p>A ($8 \text{ m/s}$) berangkat 4 detik lebih dulu dari B ($10 \text{ m/s}$). Di mana B menyusul A?</p>
@@ -203,15 +238,14 @@
           <details>
             <summary>Pembahasan Detail</summary>
             <div style="padding: 15px;">
-              <p>Jarak awalan A: $8 \times 4 = 32 \text{ m}$. Kecepatan relatif: $10 - 8 = 2 \text{ m/s}$.</p>
-              <div class="formula-box">$$t = \frac{32}{2} = 16 \text{ s} \implies s_B = 10 \times 16 = 160 \text{ m}$$</div>
+              <div class="formula-box">$$t = \frac{s_{awal}}{v_{rel}} = \frac{32}{2} = 16 \text{ s} \implies s_B = 160 \text{ m}$$</div>
               <span class="ans-tag">Jawaban: 160 m</span>
             </div>
           </details>
         </article>
 
         <article id="soal8" class="card">
-          <h3>08. Grafik v-t (Luas Trapesium)</h3>
+          <h3>08. Grafik v-t</h3>
           <p>Hitung jarak dari grafik: $v_0 = 8, v_t = 24, t = 8$.</p>
           <div class="simulator-box">
             <canvas id="canvas8"></canvas>
@@ -219,14 +253,13 @@
           <details>
             <summary>Pembahasan Detail</summary>
             <div style="padding: 15px;">
-              <p>Jarak adalah luas di bawah kurva (trapesium):</p>
-              <div class="formula-box">$$s = \frac{(8 + 24)}{2} \times 8 = 128 \text{ m}$$</div>
+              <div class="formula-box">$$s = \text{Luas Trapesium} = \frac{(8 + 24)}{2} \times 8 = 128 \text{ m}$$</div>
               <span class="ans-tag">Jawaban: 128 m</span>
             </div>
           </details>
         </article>
 
-        </div>
+      </div>
     </main>
 
     <footer>
@@ -243,7 +276,7 @@
       main.style.display = 'block';
       setTimeout(() => {
         main.style.opacity = '1';
-        draw8(); // Load canvas
+        draw8();
       }, 100);
     }
 
@@ -253,7 +286,7 @@
       const xB = 10 * t;
       document.getElementById('c1A').style.left = (xA/160 * 90) + '%';
       document.getElementById('c1B').style.left = (xB/160 * 90) + '%';
-      document.getElementById('txt1').innerText = `t = ${t}s | Pos A: ${xA}m | Pos B: ${xB}m`;
+      document.getElementById('txt1').innerText = `t = ${t}s | Pos A: ${xA.toFixed(1)}m | Pos B: ${xB.toFixed(1)}m`;
     }
 
     function draw8() {
@@ -265,8 +298,7 @@
       ctx.fillStyle = "rgba(13, 148, 136, 0.2)";
       ctx.beginPath(); ctx.moveTo(40,120); ctx.lineTo(220,50); ctx.lineTo(220,150); ctx.lineTo(40,150);
       ctx.fill(); ctx.strokeStyle = "#0d9488"; ctx.stroke();
-      ctx.fillStyle = "#0d9488"; ctx.fillText("v (m/s)", 10, 20);
-      ctx.fillText("t (s)", 265, 160);
+      ctx.fillStyle = "#0d9488"; ctx.fillText("v (m/s)", 10, 20); ctx.fillText("t (s)", 265, 160);
     }
   </script>
 </body>
